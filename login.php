@@ -37,7 +37,10 @@
 						>
 					</fieldset>
 
-					<input type="submit" value="Login">
+					<div class="button-group">
+						<input type="submit" value="Login">
+						<a href="forgot_password.php" class="btn-forgot">Forgot Password?</a>
+					</div>
 				</form>
 			</section>
 		</main>
