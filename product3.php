@@ -14,9 +14,24 @@
             <p>High-quality tools specially chosen for cacti and succulents. Gentle on roots, strong enough for thorns.</p>
 		</section>
 
+           
+            <form method="get" class="search-form">
+                <input type="text" name="search" placeholder="Search tools..." 
+                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit">Search</button>
+                <a href="product3.php" class="clear-btn">Clear</a>
+            </form>
+            
+
             <!-- Products Section -->
             <section class="product-list">
                 
+                <?php 
+                $search = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+                ?>
+
+                <!-- Mini Hand Trowel Set -->
+                <?php if ($search == '' || strpos('mini trowel', $search) !== false || strpos('trowel set', $search) !== false || strpos('hand trowel', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/handtrowelset.jpg" alt="Mini Gardening Tool Set">
@@ -26,7 +41,10 @@
                     <p>RM25</p>
                     <p class="desc">5-piece set perfect for transplanting small cacti and succulents without damaging roots.</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Succulent Pruning Shears -->
+                <?php if ($search == '' || strpos('pruning shears', $search) !== false || strpos('shears', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/succulentpruningshears.jpg" alt="Succulent Pruning Shears">
@@ -36,7 +54,10 @@
                     <p>RM22</p>
                     <p class="desc">Sharp stainless-steel blades for clean cuts during propagation and shaping your plants.</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Protective Gardening Gloves -->
+                <?php if ($search == '' || strpos('gardening gloves', $search) !== false || strpos('gloves', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/gloves.jpg" alt="Gardening Gloves">
@@ -46,7 +67,10 @@
                     <p>RM15</p>
                     <p class="desc">Thick yet flexible gloves designed to protect your hands from cactus spines.</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Soil Scoop -->
+                <?php if ($search == '' || strpos('soil scoop', $search) !== false || strpos('scoop', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/scoop.jpg" alt="Soil Scoop">
@@ -56,7 +80,10 @@
                     <p>RM12</p>
                     <p class="desc">Ergonomic scoop for easy soil transfer into pots without spillage.</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Propagation Tweezers -->
+                <?php if ($search == '' || strpos('propagation tweezers', $search) !== false || strpos('tweezers', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/tweezers.jpg" alt="Propagation Tweezers">
@@ -66,7 +93,10 @@
                     <p>RM10</p>
                     <p class="desc">Precision tweezers for gently removing baby plants and offsets.</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Bulb Syringe Watering Tool -->
+                <?php if ($search == '' || strpos('bulb syringe', $search) !== false || strpos('syringe', $search) !== false || strpos('watering tool', $search) !== false): ?>
                 <div class="product-card-tools tools-hover">
                     <figure>
                         <img src="images/bulb.jpg" alt="Bulb Syringe">
@@ -74,8 +104,9 @@
                     </figure>
                     <h3>Bulb Syringe Watering Tool</h3>
                     <p>RM18</p>
-                    <p class="desc">Gentle watering for delicate succulents â perfect control, no over-watering.</p>
+                    <p class="desc">Gentle watering for delicate succulents — perfect control, no over-watering.</p>
                 </div>
+                <?php endif; ?>
             </section>
 
 			<aside>
@@ -101,7 +132,7 @@
 					<dt>Binomial Nomenclature</dt>
 					<dd>The two-part scientific naming system (Genus species), e.g., Hibiscus rosa-sinensis</dd>
 					<dt>Cultivar</dt>
-					<dd>A plant variety produced by cultivation (often abbreviated âcv.â)</dd>
+					<dd>A plant variety produced by cultivation (often abbreviated “cv.”)</dd>
 					<dt>Taxon</dt>
 					<dd>A group of organisms at any rank (species, genus, family, etc.)</dd>
 					<dt>Type Specimen</dt>

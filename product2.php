@@ -13,9 +13,23 @@
             <h2>Succulent Collection</h2>
             <p>Succulents are the perfect companion for urban gardeners in Kuching. These resilient plants store water in their fleshy leaves, allowing them to thrive even with minimal intervention. Our curated collection focuses on unique textures and vibrant colors that bring a touch of nature into your home or office space.</p>
             
+            
+            <form method="get" class="search-form">
+                <input type="text" name="search" placeholder="Search succulents..." 
+                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit">Search</button>
+                <a href="product2.php" class="clear-btn">Clear</a>
+            </form>
+            
 
             <section class="product-list">
                 
+                <?php 
+                $search = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+                ?>
+
+                <!-- Chocolate Drop -->
+                <?php if ($search == '' || strpos('chocolate drop', $search) !== false || strpos('adromischus', $search) !== false || strpos('spots', $search) !== false): ?>
                 <div class="product-card">
 
 					<div class="card-overlay">
@@ -33,7 +47,10 @@
                     <p>RM18</p>
 					<p class="desc">"Look at my spots! They get darker and cooler when the sun shines on them."</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Ruby Glow -->
+                <?php if ($search == '' || strpos('ruby glow', $search) !== false || strpos('peperomia', $search) !== false || strpos('red', $search) !== false): ?>
                 <div class="product-card">
 				
 					<div class="card-overlay">
@@ -51,9 +68,12 @@
                     <p>RM22</p>
 					<p class="desc">"Green on top, but bright red underneath. I’m full of surprises!"</p>
                 </div>
-				
-				
-				<div class="product-card">
+                <?php endif; ?>
+                
+                
+                <!-- Sunrise -->
+                <?php if ($search == '' || strpos('sunrise', $search) !== false || strpos('anacampseros', $search) !== false || strpos('gradient', $search) !== false): ?>
+                <div class="product-card">
 				
 					<div class="card-overlay">
 						<p class="overlay-text">A visual masterpiece, this variety displays a vibrant gradient of emerald, pink, and yellow that intensifies with sunlight. It naturally grows delicate white filaments between leaves to help trap moisture in tropical environments.</p>
@@ -70,9 +90,12 @@
                     <p>RM30</p>
 					<p class="desc">"I change colors like a morning sky. The more sun I get, the pinker I turn!"</p>
                 </div>
+                <?php endif; ?>
 
 
-				<div class="product-card">
+                <!-- Living Stones -->
+                <?php if ($search == '' || strpos('living stones', $search) !== false || strpos('lithops', $search) !== false): ?>
+                <div class="product-card">
 				
 					<div class="card-overlay">
 						<p class="overlay-text">Evolved to mimic pebbles, Lithops use camouflage to avoid being eaten in the wild. These fascinating "stones" consist of two thick leaves that produce a single, beautiful daisy-like flower once a year.</p>
@@ -89,25 +112,31 @@
                     <p>RM28</p>
 					<p class="desc">"I’m a master of hide-and-seek. I look just like a rock so nobody eats me!"</p>
                 </div>
+                <?php endif; ?>
 
+				<!-- Crinkle Leaf Plant -->
+				<?php if ($search == '' || strpos('crinkle leaf', $search) !== false || strpos('adromischus cristatus', $search) !== false): ?>
 				<div class="product-card">
 				
 					<div class="card-overlay">
 						<p class="overlay-text">Known for its distinctive 'crinkled' leaf tips and fuzzy stems, this slow-grower thrives in the warmth. It’s a resilient survivor that stores water in its plump, triangular leaves, perfect for those who occasionally forget to water!</p>
 					</div>
 					
-                    <figure>
+					<figure>
                         <img src="images/crist.jpg" alt="Adromischus cristatus">
-                        <figcaption>
+						<figcaption>
 							<a href="https://www.succulentsandsunshine.com/types-of-succulents/adromischus-cristatus-crinkle-leaf-plant/" target="_blank">Adromischus cristatus</a>
 						</figcaption>
 					</figure>
 					
 					<h3>Crinkle Leaf Plant</h3>
-					<p>RM18</p>
+                    <p>RM18</p>
 					<p class="desc">"I’ve got tiny hairs and crinkled edges—I'm basically the key lime pie of the succulent world!"</p>
 				</div>
+				<?php endif; ?>
 
+				<!-- Ice Plant -->
+				<?php if ($search == '' || strpos('ice plant', $search) !== false || strpos('corpuscularia', $search) !== false): ?>
 				<div class="product-card">
 				
 					<div class="card-overlay">
@@ -119,12 +148,13 @@
                         <figcaption>
 							<a href="https://www.succulentsandsunshine.com/types-of-succulents/corpuscularia-lehmannii-ice-plant/" target="_blank">Corpuscularia lehmannii</a>
 						</figcaption>
-					</figure>
+                    </figure>
 					
-					<h3>Ice Plant</h3>
-					<p>RM15</p>
+                    <h3>Ice Plant</h3>
+                    <p>RM15</p>
 					<p class="desc">"Don't let my name fool you; I'm not a fan of the cold! My thick, angular leaves love to stack up and reach for the sun."</p>
 				</div>
+				<?php endif; ?>
 			
             </section>
         </section>

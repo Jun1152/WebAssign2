@@ -13,8 +13,23 @@
             <h2>Gardening Pots</h2>
             <p>High-quality pots specially chosen for cacti and succulents. Gentle on roots, strong enough for thorns.</p>
 
+           
+            <form method="get" class="search-form">
+                <input type="text" name="search" placeholder="Search pots..." 
+                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                <button type="submit">Search</button>
+                <a href="product4.php" class="clear-btn">Clear</a>
+            </form>
+           
+
             <section class="product-list4">
                 
+                <?php 
+                $search = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+                ?>
+
+                <!-- Eco Bola Pot -->
+                <?php if ($search == '' || strpos('eco bola', $search) !== false || strpos('bola pot', $search) !== false || strpos('marble', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/EcoBolaPot.jpg" alt="Eco Bola Pot">
@@ -30,7 +45,10 @@
                     <p>RM74</p>
                     <p class="desc">33cm diameter x 29cm height</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Argos Planter -->
+                <?php if ($search == '' || strpos('argos', $search) !== false || strpos('bamboo', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/ArgosPlanter.jpg" alt="Argos Planter">
@@ -46,7 +64,10 @@
                     <p>RM69</p>
                     <p class="desc">18cm diameter x 16.5cm height</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Eco Bell Pot -->
+                <?php if ($search == '' || strpos('eco bell', $search) !== false || strpos('bell pot', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/EcoBellPot.jpg" alt="Eco Bell Pot">
@@ -62,7 +83,10 @@
                     <p>RM34</p>
                     <p class="desc">16cm diameter x 14.5cm height</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Planet Planter -->
+                <?php if ($search == '' || strpos('planet', $search) !== false || strpos('saturn', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/PlanetPlanter.jpg" alt="Planet Planter">
@@ -78,7 +102,10 @@
                     <p>RM65</p>
                     <p class="desc">16.2cm diameter x 10.5cm height</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Eco Tubular Pot -->
+                <?php if ($search == '' || strpos('eco tubular', $search) !== false || strpos('tubular pot', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/EcoTubularPot.jpg" alt="Eco Tubular Pot">
@@ -94,7 +121,10 @@
                     <p>RM29</p>
                     <p class="desc">15cm diameter x 15cm height</p>
                 </div>
+                <?php endif; ?>
 
+                <!-- Olympia Planter -->
+                <?php if ($search == '' || strpos('olympia', $search) !== false || strpos('bowl', $search) !== false): ?>
                 <div class="product-card4">
                     <figure class="image-box">
                         <img src="images/OlympiaBowl.jpg" alt="Olympia Planter">
@@ -110,12 +140,13 @@
                     <p>RM120</p>
                     <p class="desc">32cm diameter x 36cm height</p>
                 </div>
+                <?php endif; ?>
 
             </section>
 
             <aside>
                 <h3>Pot Selection &amp; Care Guide</h3>
-                <p>Choosing the right vessel is as important as the plant itself, especially in Sarawakâs humid climate:</p>
+                <p>Choosing the right vessel is as important as the plant itself, especially in Sarawak’s humid climate:</p>
                 <ol>
                     <li>Always prioritize pots with drainage holes to prevent root rot.</li>
                     <li>Terra cotta is ideal for beginners as it allows soil to "breathe" and dry faster.</li>
