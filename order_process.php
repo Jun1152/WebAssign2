@@ -53,10 +53,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<body>";
 
             if (mysqli_query($conn, $query)) {
+
+                $new_order_id = mysqli_insert_id($conn);
+                // --- NEW INVENTORY DEDUCTION CODE ---
+                foreach ($_POST['selected'] as $index => $product_name) {
+                    $qty = (int)$_POST['qty'][$index]; 
+                    if ($qty > 0) {
+                        $safe_name = mysqli_real_escape_string($conn, $product_name);
+                        // Deduct the quantity from the current stock
+                        mysqli_query($conn, "UPDATE products SET stock = stock - $qty WHERE product_name = '$safe_name'");
+                    }
+                }
+                // ------------------------------------
                 echo "<div class='success-container'>";
                 echo "<h1>Order Confirmed!</h1>";
                 echo "<p>Success! Your order has been placed cleanly into a single summary block.</p>";
                 echo "<p>Items: " . htmlspecialchars($products_string) . "</p>";
+
+                // ADD THE GENERATE INVOICE ENHANCEMENT BUTTON HERE:
+                echo "<p class='invoice-btn-wrapper'>";
+                echo "<a href='generate_invoice.php?order_id=" . $new_order_id . "' target='_blank' class='invoice-gen-btn'>📄 Generate Invoice / Receipt</a>";
+                echo "</p>";
+
                 echo "<p><a href='index.php'>Return to Store</a></p>";
                 echo "</div>";
             } else {

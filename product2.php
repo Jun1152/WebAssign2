@@ -12,15 +12,9 @@
         <section>
             <h2>Succulent Collection</h2>
             <p>Succulents are the perfect companion for urban gardeners in Kuching. These resilient plants store water in their fleshy leaves, allowing them to thrive even with minimal intervention. Our curated collection focuses on unique textures and vibrant colors that bring a touch of nature into your home or office space.</p>
-            
-            
-            <form method="get" class="search-form">
-                <input type="text" name="search" placeholder="Search succulents..." 
-                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                <button type="submit">Search</button>
-                <a href="product2.php" class="clear-btn">Clear</a>
-            </form>
-            
+        </section>
+    
+
 
             <section class="product-list">
                 

@@ -16,14 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $admin_result = mysqli_query($conn, $admin_query);
 
     if (mysqli_num_rows($admin_result) > 0) {
-        $admin_row = mysqli_fetch_assoc($admin_result);
-        $_SESSION['role'] = 'admin';
-        $_SESSION['username'] = $admin_row['username'];
-        
-        // Redirects straight to your central navigation dashboard hub
-        header("Location: "admindashboard.php"" class="back-dashboard-btn"); 
-        exit();
-    }
+    $admin_row = mysqli_fetch_assoc($admin_result);
+    $_SESSION['role'] = 'admin';
+    $_SESSION['username'] = $admin_row['username'];
+    
+    // Clean, proper redirection:
+    header("Location: admindashboard.php"); 
+    exit();
+	}
 
     // 2. If not admin, check the regular USER table for customers
     $user_query = "SELECT * FROM user WHERE username = '$user' AND password = '$pass'";

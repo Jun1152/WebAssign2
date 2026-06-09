@@ -97,6 +97,40 @@ if (mysqli_query($conn, $sql_admin)) {
         echo "<strong>Default system credentials created:</strong> (Username: Admin, Password: Admin)<br>";
     }
 }
+// Table 5: products (Inventory System)
+$sql_products = "CREATE TABLE IF NOT EXISTS products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL UNIQUE,
+    price DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL DEFAULT 10
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+
+if (mysqli_query($conn, $sql_products)) {
+    echo "Table 'products' is ready.<br>";
+    
+    // Seed the database with the initial 24 products if it's empty
+    $seed_products = [
+        ['Golden Barrel Cactus', 35], ['Bunny Ear Cactus', 28], ['Old Man Cactus', 42],
+        ['Peanut Cactus', 22], ['Fairy Castle Cactus', 25], ['Ming Thing Cactus', 38],
+        ['Chocolate Drop', 18], ['Ruby Glow', 22], ['Sunrise', 30],
+        ['Living Stones', 28], ['Crinkle Leaf Plant', 18], ['Ice Plant', 15],
+        ['Mini Hand Trowel Set', 25], ['Succulent Pruning Shears', 22], ['Protective Gardening Gloves', 15],
+        ['Soil Scoop', 12], ['Propagation Tweezers', 10], ['Bulb Syringe Watering Tool', 18],
+        ['Eco Bola Pot', 74], ['Agros Planter', 69], ['Eco Bell Pot', 34],
+        ['Planet Planter', 65], ['Eco Tubular Pot', 29], ['Olympia Planter', 120]
+    ];
+
+    foreach($seed_products as $item) {
+        $name = mysqli_real_escape_string($conn, $item[0]);
+        $price = $item[1];
+        // Only insert if it doesn't already exist
+        $check = mysqli_query($conn, "SELECT * FROM products WHERE product_name = '$name'");
+        if(mysqli_num_rows($check) == 0) {
+            mysqli_query($conn, "INSERT INTO products (product_name, price, stock) VALUES ('$name', $price, 10)");
+        }
+    }
+    echo "Inventory automatically seeded with default 10 stock!<br>";
+}
 
 mysqli_close($conn);
 echo "<br>🎉 Initialization complete! All interactive tables and status tracking columns are successfully ready in your database.";

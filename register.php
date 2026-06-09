@@ -13,9 +13,8 @@
             <h2>Customer Registration</h2>
             <p>Create an account to reserve plants and manage your orders.</p><br>
             
-            <form action="register_process.php" method="POST">
-                
-				
+            <form action="register_process.php" method="POST" novalidate>
+    
                 <label for="firstname">First Name:</label>
                 <input type="text" id="firstname" name="firstname" maxlength="25" pattern="[A-Za-z]+" title="Alphabetical characters only" required>
                 <br>
@@ -31,10 +30,6 @@
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" maxlength="10" pattern="\d{1,10}" placeholder="e.g. 0123456789" required>
                 <br>
-
-
-
-
 
                 <fieldset>
                     <legend>Delivery Address</legend>
@@ -73,20 +68,24 @@
                     <input type="text" id="postcode" name="postcode" pattern="\d{5}" title="Exactly 5 digits required" required>
                 </fieldset>
                 <br>
-				
-				<fieldset>
-				<legend>Create New</legend>
+                
+                <fieldset>
+                <legend>Create New</legend>
 
-					<label for="username">Username:</label>
-					<input type="text" id="username" name="username" maxlength="20" required>
-					<br>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" maxlength="20" required>
+                    <br>
 
-					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" maxlength="20" required>
-				
-				</fieldset>
-				<br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" maxlength="20" required>
+                
+                </fieldset>
+                <br>
 
+                <div style="display:none !important; tab-index:-1;" aria-hidden="true">
+                    <label for="website_spamtrap">If you are human, leave this blank:</label>
+                    <input type="text" id="website_spamtrap" name="website_spamtrap" autocomplete="off">
+                </div>
 
                 <input type="submit" value="Register">
                 <input type="reset" value="Reset">

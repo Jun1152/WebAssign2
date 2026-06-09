@@ -25,6 +25,7 @@ include 'header.inc.php';
         <li><a href="view_register.php">👥 View Registered User List</a></li>
         <li><a href="view_account.php">⚙️ System Account Management</a></li>
         <li><a href="create_customer.php"> 👤 Create User Account</a></li>
+        <li><a href="inventory.php">📊 Manage Inventory & Pricing</a></li>
     </ul>
 
 

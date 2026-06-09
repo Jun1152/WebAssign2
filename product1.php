@@ -18,14 +18,6 @@
             statement in any home or office space.</p>
     </section>
 
-    <!-- ==================== SEARCH BAR ADDED ==================== -->
-    <form method="get" class="search-form">
-        <input type="text" name="search" placeholder="Search products..." 
-               value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-        <button type="submit">Search</button>
-        <a href="product1.php" class="clear-btn">Clear</a>
-    </form>
-    <!-- ==================== END SEARCH BAR ==================== -->
 
     <!-- Products Section -->
     <section class="product-list">

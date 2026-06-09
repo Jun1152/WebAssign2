@@ -12,15 +12,8 @@
         <section>
             <h2>Gardening Pots</h2>
             <p>High-quality pots specially chosen for cacti and succulents. Gentle on roots, strong enough for thorns.</p>
+        </section>
 
-           
-            <form method="get" class="search-form">
-                <input type="text" name="search" placeholder="Search pots..." 
-                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                <button type="submit">Search</button>
-                <a href="product4.php" class="clear-btn">Clear</a>
-            </form>
-           
 
             <section class="product-list4">
                 

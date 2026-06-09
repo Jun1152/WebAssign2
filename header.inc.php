@@ -11,8 +11,8 @@ if (session_status() === PHP_SESSION_NONE) {
     <p>Your local home-based botanical heaven</p>
 </header>
 
-<nav>
-    <ul>
+<nav class="navbar">
+    <ul class="nav-links">
         <li class='has-dropdown'>
             <a href='#'>Products ▾</a>
             <ul class='dropdown'>
@@ -26,5 +26,15 @@ if (session_status() === PHP_SESSION_NONE) {
         <li><a href='order.php'>Order</a></li>
         <li><a href='enquiry.php'>Enquiry</a></li>
         <li><a href='login.php'>Login</a></li>
-        </ul>
+    </ul>
+
+
 </nav>
+<form action="search.php" method="get" class="global-search-form">
+    <input type="text" name="search" placeholder="Search by Product Name"
+        value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+
+    <div class="search-button-row">
+        <button type="submit">Search</button>
+    </div>
+</form>

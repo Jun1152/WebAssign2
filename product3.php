@@ -15,13 +15,6 @@
 		</section>
 
            
-            <form method="get" class="search-form">
-                <input type="text" name="search" placeholder="Search tools..." 
-                       value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                <button type="submit">Search</button>
-                <a href="product3.php" class="clear-btn">Clear</a>
-            </form>
-            
 
             <!-- Products Section -->
             <section class="product-list">

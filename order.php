@@ -27,155 +27,44 @@
                                 <th>Quantity</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="selected[0]" value="Golden Barrel Cactus"></td>
-                                <td>Golden Barrel Cactus</td>
-                                <td>RM35</td>
-                                <td><input type="number" name="qty[0]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[1]" value="Bunny Ear Cactus"></td>
-                                <td>Bunny Ear Cactus</td>
-                                <td>RM28</td>
-                                <td><input type="number" name="qty[1]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[2]" value="Old Man Cactus"></td>
-                                <td>Old Man Cactus</td>
-                                <td>RM42</td>
-                                <td><input type="number" name="qty[2]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[3]" value="Peanut Cactus"></td>
-                                <td>Peanut Cactus</td>
-                                <td>RM22</td>
-                                <td><input type="number" name="qty[3]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[4]" value="Fairy Castle Cactus"></td>
-                                <td>Fairy Castle Cactus</td>
-                                <td>RM25</td>
-                                <td><input type="number" name="qty[4]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[5]" value="Ming Thing Cactus"></td>
-                                <td>Ming Thing Cactus</td>
-                                <td>RM38</td>
-                                <td><input type="number" name="qty[5]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-							
-                            <tr>
-                                <td><input type="checkbox" name="selected[6]" value="Chocolate Drop"></td>
-                                <td>Chocolate Drop</td>
-                                <td>RM18</td>
-                                <td><input type="number" name="qty[6]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[7]" value="Ruby Glow"></td>
-                                <td>Ruby Glow</td>
-                                <td>RM22</td>
-                                <td><input type="number" name="qty[7]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[8]" value="Sunrise"></td>
-                                <td>Sunrise</td>
-                                <td>RM30</td>
-                                <td><input type="number" name="qty[8]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[9]" value="Living Stones"></td>
-                                <td>Living Stones</td>
-                                <td>RM28</td>
-                                <td><input type="number" name="qty[9]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[10]" value="Crinkle Leaf Plant"></td>
-                                <td>Crinkle Leaf Plant</td>
-                                <td>RM18</td>
-                                <td><input type="number" name="qty[10]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[11]" value="Ice Plant"></td>
-                                <td>Ice Plant</td>
-                                <td>RM15</td>
-                                <td><input type="number" name="qty[11]" min="0" value="0" class="qty-input"></td>
-                            </tr>
+<tbody>
+                            <?php
+                            require_once('settings.php');
                             
-                            <tr>
-                                <td><input type="checkbox" name="selected[12]" value="Mini Hand Trowel Set"></td>
-                                <td>Mini Hand Trowel Set</td>
-                                <td>RM25</td>
-                                <td><input type="number" name="qty[12]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[13]" value="Succulent Pruning Shears"></td>
-                                <td>Succulent Pruning Shears</td>
-                                <td>RM22</td>
-                                <td><input type="number" name="qty[13]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[14]" value="Protective Gardening Gloves"></td>
-                                <td>Protective Gardening Gloves</td>
-                                <td>RM15</td>
-                                <td><input type="number" name="qty[14]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[15]" value="Soil Scoop"></td>
-                                <td>Soil Scoop</td>
-                                <td>RM12</td>
-                                <td><input type="number" name="qty[15]" min="0" value="0" class="qty-input"></td>
-                            </tr>
+                            // Fetch all products from the database
+                            $query = "SELECT * FROM products ORDER BY product_id ASC";
+                            $result = mysqli_query($conn, $query);
+                            
+                            if (mysqli_num_rows($result) > 0) {
+                                $i = 0; // Array index for the form inputs
+                                
+                                while($row = mysqli_fetch_assoc($result)) {
+                                    $name = htmlspecialchars($row['product_name']);
+                                    $price = $row['price'];
+                                    $stock = $row['stock'];
+                                    
+                                    // Check if item is out of stock to disable the inputs
+                                    $is_empty = ($stock <= 0);
+                                    $disabled = $is_empty ? "disabled" : "";
+                                    $stockLabel = $is_empty ? "<span style='color:red;'>Out of Stock</span>" : "<span style='color:green;'>Stock: $stock</span>";
 
-                            <tr>
-                                <td><input type="checkbox" name="selected[16]" value="Propagation Tweezers"></td>
-                                <td>Propagation Tweezers</td>
-                                <td>RM10</td>
-                                <td><input type="number" name="qty[16]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[17]" value="Bulb Syringe Watering Tool"></td>
-                                <td>Bulb Syringe Watering Tool</td>
-                                <td>RM18</td>
-                                <td><input type="number" name="qty[17]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-							
-							<tr>
-                                <td><input type="checkbox" name="selected[18]" value="Eco Bola Pot"></td>
-                                <td>Eco Bola Pot</td>
-                                <td>RM74</td>
-                                <td><input type="number" name="qty[18]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[19]" value="Agros Planter"></td>
-                                <td>Agros Planter</td>
-                                <td>RM69</td>
-                                <td><input type="number" name="qty[19]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[20]" value="Eco Bell Pot"></td>
-                                <td>Eco Bell Pot</td>
-                                <td>RM34</td>
-                                <td><input type="number" name="qty[20]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[21]" value="Planet Planter"></td>
-                                <td>Planet Planter</td>
-                                <td>RM65</td>
-                                <td><input type="number" name="qty[21]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[22]" value="Eco Tubular Pot"></td>
-                                <td>Eco Tubular Pot</td>
-                                <td>RM29</td>
-                                <td><input type="number" name="qty[22]" min="0" value="0" class="qty-input"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="selected[23]" value="Olympia Planter"></td>
-                                <td>Olympia Planter</td>
-                                <td>RM120</td>
-                                <td><input type="number" name="qty[23]" min="0" value="0" class="qty-input"></td>
-                            </tr>
+                                    echo "<tr>";
+                                    // Checkbox
+                                    echo "<td><input type='checkbox' name='selected[$i]' value='$name' $disabled></td>";
+                                    // Name & Dynamic Stock Label
+                                    echo "<td>$name <br><small><strong>$stockLabel</strong></small></td>";
+                                    // Price
+                                    echo "<td>RM$price</td>";
+                                    // Quantity Input (Max is set to remaining stock so users can't over-order)
+                                    echo "<td><input type='number' name='qty[$i]' min='0' max='$stock' value='0' class='qty-input' $disabled></td>";
+                                    echo "</tr>";
+                                    
+                                    $i++;
+                                }
+                            } else {
+                                echo "<tr><td colspan='4' style='text-align:center; color:red;'>Inventory is currently empty. Please run setup.php</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
